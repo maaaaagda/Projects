@@ -2,32 +2,34 @@
 #include "stdafx.h"
 #include "iostream"
 
-class CCircle;
-class CPoint;
-int iDistance( CCircle *c,  CPoint *p);
+class CRectangle;
+class CPoint2D;
 
-class CCircle 
+
+class CRectangle
 {
-	int x;
-	int y;
-	int r;
+	friend class CPoint2D;
+	CPoint2D *point1;
+	CPoint2D *point2;
 
 public:
-	CCircle(int x, int y, int r);
-	friend int iDistance(const CCircle *c, const CPoint *p);
-	int getX();
-	int getY();
-	int getR();
+	CRectangle(double dX1, double dY1, double dX2, double dY2);
+	CRectangle(CPoint2D *cPoint1, CPoint2D *cPoint2);
+	CRectangle(CRectangle &cRectangle);
+	double dArea();
+	void vInfo();
+
 
 };
-class CPoint
+class CPoint2D
 {
-	int x;
-	int y;
+	//friend class CRectangle;
+	double  dX;
+	double  dY;
 public:
-	CPoint(int x, int y);
-	friend int iDistance( CCircle *c,  CPoint *p);
-	int getX();
-	int getY();
+	CPoint2D(double dX, double dY);
+	CPoint2D(CPoint2D &cPointToCopy);
+	double getX();
+	double getY();
 };
 

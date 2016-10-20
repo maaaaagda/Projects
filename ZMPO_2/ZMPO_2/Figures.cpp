@@ -1,42 +1,51 @@
 #include "stdafx.h"
 #include "Figures.h"
 #include "math.h"
+using namespace std;
 
+CRectangle::CRectangle(double x1, double y1, double x2, double y2)
+{
+	point1 = new CPoint2D(x1, y1);
+	point2 = new CPoint2D(x2, y2);
+}
+CRectangle::CRectangle(CPoint2D *cPoint1, CPoint2D *cPoint2)
+{
+	point1 = cPoint1;
+	point2 = cPoint2;
+}
 
-CCircle::CCircle(int a, int b, int c)
+CRectangle::CRectangle(CRectangle &cRectangle)
 {
-	x = a;
-	y = b;
-	r = c;
+	point1 = new CPoint2D(*cRectangle.point1);
+	point2 = new CPoint2D(*cRectangle.point2);
 }
-int CCircle::getX()
+double CRectangle::dArea()
 {
-	return x;
+	return abs(point1->getX() - point2->getX())*abs(point1->getY() - point2->getY());
 }
-int CCircle::getY()
+
+void CRectangle::vInfo()
 {
-	return y;
+	cout << "CRectangle(CPoint(" << point1->getX() << "," << point1->getY() << ",CPoint(" << point2->getX() << "," << point2->getY() <<"))"<< endl;
 }
-int CCircle::getR()
+
+CPoint2D::CPoint2D(double x, double y)
 {
-	return r;
+	dX = x;
+	dY = y;
 }
-CPoint::CPoint(int a, int b)
+CPoint2D::CPoint2D(CPoint2D &cPointToCopy)
 {
-	x = a;
-	y = b;
+	dX = cPointToCopy.dX;
+	dY = cPointToCopy.dY;
 }
-int CPoint::getX()
+double CPoint2D::getX()
 {
-	return x;
+	return dX;
 }
-int CPoint::getY()
+double CPoint2D::getY()
 {
-	return y;
+	return dY;
 }
-int iDistance(CCircle *c,  CPoint *p)
-{
-	//return c->getR();
-	return abs (c->getR() - sqrt( pow((p->getX() - c->getX()),2) + pow((p->getY() - c->getY()),2)));
-}
+
 
