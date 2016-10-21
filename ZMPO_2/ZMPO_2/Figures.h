@@ -23,7 +23,7 @@ public:
 };
 class CPoint2D
 {
-	//friend class CRectangle;
+	
 	double  dX;
 	double  dY;
 public:
@@ -31,5 +31,7 @@ public:
 	CPoint2D(CPoint2D &cPointToCopy);
 	double getX();
 	double getY();
+	void setX(double x);
+	void setY(double y);
 };
 

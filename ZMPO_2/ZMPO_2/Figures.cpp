@@ -47,5 +47,13 @@ double CPoint2D::getY()
 {
 	return dY;
 }
+void CPoint2D::setX(double x)
+{
+	dX = x;
+}
+void CPoint2D::setY(double y)
+{
+	dY = y;
+}
 
 
