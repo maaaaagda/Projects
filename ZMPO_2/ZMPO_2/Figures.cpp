@@ -31,8 +31,8 @@ void CRectangle::vInfo()
 
 CPoint2D::CPoint2D(double x, double y)
 {
-	dX = x;
-	dY = y;
+	dX = new double(x);
+	dY = new double(y);
 }
 CPoint2D::CPoint2D(CPoint2D &cPointToCopy)
 {
@@ -41,19 +41,22 @@ CPoint2D::CPoint2D(CPoint2D &cPointToCopy)
 }
 double CPoint2D::getX()
 {
-	return dX;
+	return *dX;
 }
 double CPoint2D::getY()
 {
-	return dY;
+	return *dY;
 }
 void CPoint2D::setX(double x)
 {
-	dX = x;
+	delete dX;
+	dX = new double(x);
+	
 }
 void CPoint2D::setY(double y)
 {
-	dY = y;
+	delete dY;
+	dY = new double(y);
 }
 
 

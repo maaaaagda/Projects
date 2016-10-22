@@ -24,8 +24,8 @@ public:
 class CPoint2D
 {
 	
-	double  dX;
-	double  dY;
+	double  *dX;
+	double  *dY;
 public:
 	CPoint2D(double dX, double dY);
 	CPoint2D(CPoint2D &cPointToCopy);
