@@ -63,38 +63,31 @@ string showPoint(CPoint2D **CPointTab, int pointPos)
 {
 	return (CPointTab[pointPos])->sShowPoint();
 }
+string addPoint(CPoint2D **CPointTab, CRectangle **CRectangleTab, int rectPos, int pointPos)
+{
+	*CRectangleTab[rectPos] + *CPointTab[pointPos];
+	return "DONE";
+}
+string addRect(CRectangle **CRectangleTab, int rectPos, int rectAddedPos)
+{
+	*CRectangleTab[rectPos] + *CRectangleTab[rectAddedPos];
+	return "DONE";
+}
+string assignPoint(CPoint2D **CPointTab, int pointPos, int pointAssignPos)
+{
+	*CPointTab[pointPos] = *CPointTab[pointAssignPos];
+	return "DONE";
+}
+string assignRect(CRectangle **CRectangleTab, int rectPos, int rectAssignPos)
+{
+	CRectangleTab[rectPos]->getPoint1() = CRectangleTab[rectAssignPos]->getPoint1();
+	CRectangleTab[rectPos]->getPoint2() = CRectangleTab[rectAssignPos]->getPoint2();
+	return "DONE";
+}
 
 int main()
 {
-	CPoint2D p1 = CPoint2D(1, 1);
-	CPoint2D p2 = CPoint2D(2, 2);
-	CPoint2D p8 = CPoint2D(4, 1.5);
-	CPoint2D p3 = p2;
-	CRectangle p = CRectangle(p1, p2);
-	CRectangle r = CRectangle(5, 5, 8, 8);
-	p + r;
-	cout << "adding rect to rect"<<p.sShowRect() << endl;
-	CRectangle pp;
-	CPoint2D c = CPoint2D(p1);
-	//cout<<p2->sShowPoint();
-	//cout << p3->sShowPoint();
-	cout << p.sShowRect()<<endl;
-	cout << (p1 == c) << endl;
-	p + p8;
-	cout << p.sShowRect() << endl;
-	cout << distance(p1, p2);
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	int nrOfPoints = 0;
 	int nrOfRectangles = 0;
 	CPoint2D **CPointTab = NULL;
@@ -293,7 +286,7 @@ int main()
 					{
 						if (pointPos >= 0 && pointPos  < nrOfPoints)
 						{
-							//
+							cout << addPoint(CPointTab, CRectangleTab, rectPos, pointPos) << endl;
 						}
 						else cout << "ERROR" << endl;
 					}
@@ -308,13 +301,13 @@ int main()
 			{
 				try
 				{
-					int rectAddPos = stoi(words[1]);
-					int rectPos = stoi(words[2]);
+					int rectPos = stoi(words[1]);
+					int rectAddPos = stoi(words[2]);
 					if (rectAddPos >= 0 && rectAddPos  < nrOfRectangles)
 					{
 						if (rectPos >= 0 && rectPos  < nrOfRectangles)
 						{
-							//
+							cout << addRect(CRectangleTab, rectPos, rectAddPos) << endl;
 						}
 						else cout << "ERROR" << endl;
 					}
@@ -325,17 +318,17 @@ int main()
 					cout << "ERROR" << endl;
 				}
 			}
-			else if (words[0] == "!assingRec")
+			else if (words[0] == "!assingRect")
 			{
 				try
 				{
-					int rectAssignPos = stoi(words[1]); //sk퉐 
-					int rectPos = stoi(words[2]);
+					int rectPos = stoi(words[1]);
+					int rectAssignPos = stoi(words[2]);  //sk퉐 
 					if (rectAssignPos >= 0 && rectAssignPos  < nrOfRectangles)
 					{
 						if (rectPos >= 0 && rectPos  < nrOfRectangles)
 						{
-							//
+							cout << assignRect(CRectangleTab, rectPos, rectAssignPos) << endl;
 						}
 						else cout << "ERROR" << endl;
 					}
@@ -350,13 +343,13 @@ int main()
 			{
 				try
 				{
-					int pointAssignPos = stoi(words[1]); //sk퉐 
-					int pointPos = stoi(words[2]);
+					int pointPos = stoi(words[1]); 
+					int pointAssignPos = stoi(words[2]);        //sk퉐 
 					if (pointAssignPos >= 0 && pointAssignPos  < nrOfPoints)
 					{
 						if (pointPos >= 0 && pointPos  < nrOfPoints)
 						{
-							//
+							cout << assignPoint(CPointTab, pointPos, pointAssignPos) << endl;
 						}
 						else cout << "ERROR" << endl;
 					}
@@ -430,3 +423,27 @@ int main()
 	return 0;
 }
 
+
+
+
+/*
+CPoint2D p1 = CPoint2D(1, 1);
+CPoint2D p2 = CPoint2D(2, 2);
+CPoint2D p8 = CPoint2D(4, 1.5);
+CPoint2D p3 = p2;
+CRectangle p = CRectangle(p1, p2);
+CRectangle r = CRectangle(5, 5, 8, 8);
+p + r;
+cout << "adding rect to rect"<<p.sShowRect() << endl;
+CRectangle pp;
+CPoint2D c = CPoint2D(p1);
+//cout<<p2->sShowPoint();
+//cout << p3->sShowPoint();
+cout << p.sShowRect()<<endl;
+cout << (p1 == c) << endl;
+p + p8;
+cout << p.sShowRect() << endl;
+cout << distance(p1, p2);
+
+
+*/

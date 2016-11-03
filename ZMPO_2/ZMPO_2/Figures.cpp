@@ -4,27 +4,7 @@
 
 
 using namespace std;
-/*
-CRectangle::CRectangle(double x1, double y1, double x2, double y2)
-{
-	point1 = new CPoint2D(x1, y1);
-	point2 = new CPoint2D(x2, y2);
-}
-CRectangle::CRectangle(CPoint2D *cPoint1, CPoint2D *cPoint2)
-{
-	point1 = cPoint1;
-	point2 = cPoint2;
-}
 
-CRectangle::CRectangle(CRectangle &cRectangle)
-{
-	point1 = new CPoint2D(*cRectangle.point1);
-	point2 = new CPoint2D(*cRectangle.point2);
-}
-CRectangle::~CRectangle()
-{
-	
-}*/
 double CRectangle::dArea()
 {
 	return abs(point1.getX() - point2.getX())*abs(point1.getY() - point2.getY());
@@ -168,7 +148,7 @@ void CRectangle::operator+(CRectangle r)
 	*this + r.point1;
 	*this + r.point2;
 }
-bool CPoint2D::operator ==(CPoint2D v)
+bool CPoint2D::operator == (CPoint2D v)
 {
 	if ((*dX == v.getX()) && (*dY == v.getY()))
 		return true;
@@ -176,8 +156,16 @@ bool CPoint2D::operator ==(CPoint2D v)
 		return false;
 
 }
-void CPoint2D:: operator =(CPoint2D p)
+void CPoint2D:: operator = (CPoint2D p)
 {
 	setX(p.getX());
 	setY(p.getY());
+}
+CPoint2D CRectangle::getPoint1()
+{
+	return point1;
+}
+CPoint2D CRectangle::getPoint2()
+{
+	return point2;
 }

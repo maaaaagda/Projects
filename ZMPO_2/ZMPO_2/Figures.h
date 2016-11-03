@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "iostream"
 #include <string>
-using namespace std;
+
 class CRectangle;
 
 
@@ -37,6 +37,8 @@ public:
 	CRectangle(CPoint2D cPoint1, CPoint2D cPoint2):point1(cPoint1), point2(cPoint2) {}
 	CRectangle(CRectangle &cRectangle):point1(cRectangle.point1), point2(cRectangle.point2) {}
 	CRectangle() : point1(0, 0), point2(1, 1) {}
+	CPoint2D getPoint1();
+	CPoint2D getPoint2();
 	double dArea();
 	std::string sShowRect();
 	void operator +(CPoint2D p);
