@@ -43,7 +43,7 @@ string createRectDouble(CRectangle **CRectangleTab, int rectPos, double x1, doub
 }
 string createRectPoints(CPoint2D **CPointTab, CRectangle **CRectangleTab, int rectPos, int point1Pos, int point2Pos)
 {
-	CRectangleTab[rectPos] = new CRectangle(CPointTab[point1Pos], CPointTab[point2Pos]);
+	CRectangleTab[rectPos] = new CRectangle(*CPointTab[point1Pos], *CPointTab[point2Pos]);
 	return "DONE";
 }
 string createRectCopy(CRectangle **CRectangleTab, int rectCopyPos, int rectPos)
@@ -57,18 +57,49 @@ string fieldRect(CRectangle **CRectangleTab, int rectPos)
 }
 string showRect(CRectangle **CRectangleTab, int rectPos)
 {
-	(CRectangleTab[rectPos])->vInfo();
-	return "DONE";
+	return (CRectangleTab[rectPos])->sShowRect();
+}
+string showPoint(CPoint2D **CPointTab, int pointPos)
+{
+	return (CPointTab[pointPos])->sShowPoint();
 }
 
 int main()
 {
+	CPoint2D p1 = CPoint2D(1, 1);
+	CPoint2D p2 = CPoint2D(2, 2);
+	CPoint2D p8 = CPoint2D(4, 1.5);
+	CPoint2D p3 = p2;
+	CRectangle p = CRectangle(p1, p2);
+	CRectangle r = CRectangle(5, 5, 8, 8);
+	p + r;
+	cout << "adding rect to rect"<<p.sShowRect() << endl;
+	CRectangle pp;
+	CPoint2D c = CPoint2D(p1);
+	//cout<<p2->sShowPoint();
+	//cout << p3->sShowPoint();
+	cout << p.sShowRect()<<endl;
+	cout << (p1 == c) << endl;
+	p + p8;
+	cout << p.sShowRect() << endl;
+	cout << distance(p1, p2);
+
+
+
+
+
+
+
+
+
+
+
+
 	int nrOfPoints = 0;
 	int nrOfRectangles = 0;
-	CPoint2D **CPointTab = new CPoint2D*[nrOfPoints];
-	CRectangle **CRectangleTab = new CRectangle*[nrOfRectangles];
+	CPoint2D **CPointTab = NULL;
+	CRectangle **CRectangleTab = NULL;
 	
-
 	cout << "commend plizzz: " << endl;
 	bool exit = false;
 	
@@ -252,6 +283,90 @@ int main()
 					cout << "ERROR" << endl;
 				}
 			}
+			else if (words[0] == "!addPoint")
+			{
+				try
+				{
+					int rectPos = stoi(words[1]);
+					int pointPos = stoi(words[2]);
+					if (rectPos >= 0 && rectPos  < nrOfRectangles)
+					{
+						if (pointPos >= 0 && pointPos  < nrOfPoints)
+						{
+							//
+						}
+						else cout << "ERROR" << endl;
+					}
+					else cout << "ERROR" << endl;
+				}
+				catch (invalid_argument e)
+				{
+					cout << "ERROR" << endl;
+				}
+			}
+			else if (words[0] == "!addRect")
+			{
+				try
+				{
+					int rectAddPos = stoi(words[1]);
+					int rectPos = stoi(words[2]);
+					if (rectAddPos >= 0 && rectAddPos  < nrOfRectangles)
+					{
+						if (rectPos >= 0 && rectPos  < nrOfRectangles)
+						{
+							//
+						}
+						else cout << "ERROR" << endl;
+					}
+					else cout << "ERROR" << endl;
+				}
+				catch (invalid_argument e)
+				{
+					cout << "ERROR" << endl;
+				}
+			}
+			else if (words[0] == "!assingRec")
+			{
+				try
+				{
+					int rectAssignPos = stoi(words[1]); //sk¹d 
+					int rectPos = stoi(words[2]);
+					if (rectAssignPos >= 0 && rectAssignPos  < nrOfRectangles)
+					{
+						if (rectPos >= 0 && rectPos  < nrOfRectangles)
+						{
+							//
+						}
+						else cout << "ERROR" << endl;
+					}
+					else cout << "ERROR" << endl;
+				}
+				catch (invalid_argument e)
+				{
+					cout << "ERROR" << endl;
+				}
+			}
+			else if (words[0] == "!assignPoint")
+			{
+				try
+				{
+					int pointAssignPos = stoi(words[1]); //sk¹d 
+					int pointPos = stoi(words[2]);
+					if (pointAssignPos >= 0 && pointAssignPos  < nrOfPoints)
+					{
+						if (pointPos >= 0 && pointPos  < nrOfPoints)
+						{
+							//
+						}
+						else cout << "ERROR" << endl;
+					}
+					else cout << "ERROR" << endl;
+				}
+				catch (invalid_argument e)
+				{
+					cout << "ERROR" << endl;
+				}
+			}
 			else if (words[0] == "!showRect")
 			{
 				try
@@ -260,6 +375,23 @@ int main()
 					if (rectPos >= 0 && rectPos < nrOfRectangles )
 					{
 						cout << showRect(CRectangleTab, rectPos) << endl;
+					}
+					else cout << "ERROR" << endl;
+
+				}
+				catch (invalid_argument e)
+				{
+					cout << "ERROR" << endl;
+				}
+			}
+			else if (words[0] == "!showPoint")
+			{
+				try
+				{
+					int pointPos = stoi(words[1]);
+					if (pointPos >= 0 && pointPos < nrOfPoints)
+					{
+						cout << showPoint(CPointTab, pointPos) << endl;
 					}
 					else cout << "ERROR" << endl;
 
@@ -289,6 +421,7 @@ int main()
 			else if (words[0] == "!exit")
 			{
 				exit = true;
+				
 			}
 			
 	} while (!exit);
