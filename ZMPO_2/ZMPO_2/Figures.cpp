@@ -125,7 +125,7 @@ void CRectangle::operator +(CPoint2D p)
 		{
 			point1.setX(p.getX());
 		}
-		else if (shortest == point2)					//i reversy ewentualnie
+		else if (shortest == point2)					//i reversy ewentualnie tutaj
 		{
 			point2.setX(p.getX());
 		}
