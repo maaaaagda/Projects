@@ -169,3 +169,8 @@ CPoint2D CRectangle::getPoint2()
 {
 	return point2;
 }
+void CRectangle:: operator = (CRectangle p)
+{
+	point1 = p.point1;
+	point2 = p.point2;
+}

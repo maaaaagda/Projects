@@ -43,6 +43,7 @@ public:
 	std::string sShowRect();
 	void operator +(CPoint2D p);
 	void operator +(CRectangle r);
+	void operator =(CRectangle p);
 };
 
 

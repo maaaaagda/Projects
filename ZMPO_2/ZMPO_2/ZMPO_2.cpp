@@ -80,8 +80,7 @@ string assignPoint(CPoint2D **CPointTab, int pointPos, int pointAssignPos)
 }
 string assignRect(CRectangle **CRectangleTab, int rectPos, int rectAssignPos)
 {
-	CRectangleTab[rectPos]->getPoint1() = CRectangleTab[rectAssignPos]->getPoint1();
-	CRectangleTab[rectPos]->getPoint2() = CRectangleTab[rectAssignPos]->getPoint2();
+	*CRectangleTab[rectPos] = *CRectangleTab[rectAssignPos];
 	return "DONE";
 }
 
@@ -318,7 +317,7 @@ int main()
 					cout << "ERROR" << endl;
 				}
 			}
-			else if (words[0] == "!assingRect")
+			else if (words[0] == "!assignRect")
 			{
 				try
 				{
