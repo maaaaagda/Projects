@@ -81,6 +81,7 @@ string assignPoint(CPoint2D **CPointTab, int pointPos, int pointAssignPos)
 string assignRect(CRectangle **CRectangleTab, int rectPos, int rectAssignPos)
 {
 	*CRectangleTab[rectPos] = *CRectangleTab[rectAssignPos];
+	
 	return "DONE";
 }
 
@@ -414,6 +415,7 @@ int main()
 			{
 				exit = true;
 				
+
 			}
 			
 	} while (!exit);

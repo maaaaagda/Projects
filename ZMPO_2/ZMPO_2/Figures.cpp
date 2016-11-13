@@ -58,7 +58,25 @@ double distance(CPoint2D p1, CPoint2D p2 )
 }
 void CRectangle::operator +(CPoint2D p)
 {
-	
+
+
+	if (p.getX() > point2.getX())
+	{
+		point2.setX(p.getX());
+	}
+	if (p.getX() < point1.getX())
+	{
+		point1.setX(p.getX());
+	}
+	if (p.getY() > point2.getY())
+	{
+		point2.setY(p.getY());
+	}
+	if (p.getY() < point1.getY())
+	{
+		point1.setY(p.getY());
+	}
+	/*
 	CPoint2D ps1 = CPoint2D(point1.getX(), point2.getY());
 	CPoint2D ps2 = CPoint2D(point2.getX(), point1.getY());
 	CPoint2D cTab[4] = { point1, point2, ps1, ps2 };
@@ -141,7 +159,7 @@ void CRectangle::operator +(CPoint2D p)
 			point1 = ps2;
 			point2 = ps1;
 		}
-	}
+	}*/
 }
 void CRectangle::operator+(CRectangle r)
 {

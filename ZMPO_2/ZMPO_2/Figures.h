@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "iostream"
 #include <string>
+#include <algorithm>
 
 class CRectangle;
 
@@ -20,7 +21,7 @@ public:
 	void setX(double x);
 	void setY(double y);
 	std::string sShowPoint();
-	bool operator ==(CPoint2D v);
+	bool operator == (CPoint2D v);
 	void operator =(CPoint2D p);
 	
 };
@@ -33,8 +34,9 @@ class CRectangle
 	
 
 public:
-	CRectangle(double dX1, double dY1, double dX2, double dY2):point1(dX1, dY1), point2(dX2, dY2) {}
-	CRectangle(CPoint2D cPoint1, CPoint2D cPoint2):point1(cPoint1), point2(cPoint2) {}
+	CRectangle(double dX1, double dY1, double dX2, double dY2):point1(std::min(dX1, dX2), std::min(dY1, dY2)), point2(std::max(dX1, dX2), std::max(dY1, dY2)) {}
+	CRectangle(CPoint2D cPoint1, CPoint2D cPoint2):point1(std::min(cPoint1.getX(), cPoint2.getX()),	std::min(cPoint1.getY(), cPoint2.getY())),
+		point2(std::max(cPoint1.getX(), cPoint2.getX()), std::max(cPoint1.getY(), cPoint2.getY())) {}
 	CRectangle(CRectangle &cRectangle):point1(cRectangle.point1), point2(cRectangle.point2) {}
 	CRectangle() : point1(0, 0), point2(1, 1) {}
 	CPoint2D getPoint1();
